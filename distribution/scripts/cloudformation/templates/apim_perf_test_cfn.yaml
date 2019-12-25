@@ -22,6 +22,11 @@
     Type: String
     ConstraintDescription: must be a valid zip package
     AllowedPattern: ^.*\.zip$
+  JDK11DistributionName:
+    Description: The name of the 'JDK11 Distribution' in S3 Bucket
+    Type: String
+    ConstraintDescription: must be a valid gz package
+    AllowedPattern: ^.*\.gz$
   MySQLConnectorJarName:
     Description: The name of the MySQL Connector Jar in the S3 Backet
     Type: String
