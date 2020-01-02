@@ -85,7 +85,7 @@ export JVM_MEM_OPTS="-Xms${heap_size} -Xmx${heap_size}"
 
 echo "Enabling GC Logs"
 #export JAVA_OPTS="-XX:+PrintGC -XX:+PrintGCDetails -XX:+PrintGCDateStamps -Xloggc:/home/ubuntu/wso2am/repository/logs/gc.log"
-export JAVA_OPTS="-Xlog:gc*,safepoint,gc+heap=trace:file=/home/ubuntu/wso2am/repository/logs/gc.log:uptime,utctime,level,tags -XX:+UseParallelGC "
+export JAVA_OPTS="-Xlog:gc*,safepoint,gc+heap=trace:file=/home/ubuntu/wso2am/repository/logs/gc.log:uptime,utctime,level,tags "
 
 
 echo "Starting APIM"
