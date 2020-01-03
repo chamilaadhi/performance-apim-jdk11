@@ -89,7 +89,7 @@ echo "Enabling GC Logs"
 
 #Enable this JAVA_OPTS and comment out above JAVA_OPTS to enable JFR recording. To retrive this recording uncomment 
 # last line in after_execute_test_scenario() method in run-performance-tests.sh file
-export JAVA_OPTS="-Xlog:gc*,safepoint,gc+heap=trace:file=/home/ubuntu/wso2am/repository/logs/gc.log:uptime,utctime,level,tags -XX:StartFlightRecording=disk=true, dumponexit=true, filename=/home/ubuntu/wso2am/repository/logs/recording.jfr, maxsize=4096m, maxage=1d, settings=profile, path-to-gc-roots=true "
+export JAVA_OPTS="-Xlog:gc*,safepoint,gc+heap=trace:file=/home/ubuntu/wso2am/repository/logs/gc.log:uptime,utctime,level,tags -XX:StartFlightRecording=disk=true,dumponexit=true,filename=/home/ubuntu/wso2am/repository/logs/recording.jfr,maxsize=4096m,maxage=1d,settings=profile,path-to-gc-roots=true "
 
 echo "Starting APIM"
 wso2am/bin/wso2server.sh start
