@@ -42,26 +42,26 @@ declare -A test_scenario0=(
     [display_name]="Passthrough"
     [description]="A secured API, which directly invokes the back-end service."
     [jmx]="apim-test.jmx"
-    [protocol]="https"
+    [protocol]="http"
     [path]="/echo/1.0.0"
     [use_backend]=true
     [skip]=false
 )
-declare -A test_scenario1=(
-    [name]="transformation"
-    [display_name]="Transformation"
-    [description]="A secured API, which has a mediation extension to modify the message."
-    [jmx]="apim-test.jmx"
-    [protocol]="https"
-    [path]="/mediation/1.0.0"
-    [use_backend]=true
-    [skip]=false
-)
+#declare -A test_scenario1=(
+#    [name]="transformation"
+#    [display_name]="Transformation"
+#    [description]="A secured API, which has a mediation extension to modify the message."
+#    [jmx]="apim-test.jmx"
+#    [protocol]="https"
+#    [path]="/mediation/1.0.0"
+#    [use_backend]=true
+#    [skip]=false
+#)
 
 function before_execute_test_scenario() {
     local service_path=${scenario[path]}
     local protocol=${scenario[protocol]}
-    jmeter_params+=("host=$apim_host" "port=8243" "path=$service_path")
+    jmeter_params+=("host=$apim_host" "port=8280" "path=$service_path")
     jmeter_params+=("payload=$HOME/${msize}B.json" "response_size=${msize}B" "protocol=$protocol"
         tokens="$HOME/tokens.csv")
     echo "Starting APIM service"
@@ -72,7 +72,7 @@ function after_execute_test_scenario() {
     write_server_metrics apim $apim_ssh_host org.wso2.carbon.bootstrap.Bootstrap
     download_file $apim_ssh_host wso2am/repository/logs/wso2carbon.log wso2carbon.log
     download_file $apim_ssh_host wso2am/repository/logs/gc.log apim_gc.log
-    #download_file $apim_ssh_host wso2am/repository/logs/recording.jfr recording.jfr
+    download_file $apim_ssh_host wso2am/repository/logs/recording.jfr recording.jfr
 }
 
 test_scenarios
