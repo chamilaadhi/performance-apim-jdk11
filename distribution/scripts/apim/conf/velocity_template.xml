@@ -227,7 +227,18 @@ $out_sequences.get("$resource.getUriTemplate()").get($uri)
         ## print the handlers
         #if($handlers.size() > 0)
 <handlers xmlns="http://ws.apache.org/ns/synapse">
-
+#foreach($handler in $handlers)
+#if($handler.className == 'org.wso2.carbon.apimgt.gateway.handlers.common.APIMgtLatencyStatsHandler')
+<handler xmlns="http://ws.apache.org/ns/synapse" class="$handler.className">
+    #if($handler.hasProperties())
+    #set ($map = $handler.getProperties() )
+    #foreach($property in $map.entrySet())
+    <property name="$!property.key" value="$!property.value"/>
+    #end
+    #end
+</handler>
+#end
+#end
 ## check and set enable schema validation
 #if($enableSchemaValidation)
 <handler class="org.wso2.carbon.apimgt.gateway.handlers.security.SchemaValidator"/>
