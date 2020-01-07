@@ -228,7 +228,7 @@ $out_sequences.get("$resource.getUriTemplate()").get($uri)
         #if($handlers.size() > 0)
 <handlers xmlns="http://ws.apache.org/ns/synapse">
 #foreach($handler in $handlers)
-#if($handler.className == 'org.wso2.carbon.apimgt.gateway.handlers.common.APIMgtLatencyStatsHandler' || $handler.className == 'org.wso2.carbon.apimgt.gateway.handlers.security.APIAuthenticationHandler')
+#if($handler.className == 'org.wso2.carbon.apimgt.gateway.handlers.common.APIMgtLatencyStatsHandler' || $handler.className == 'org.wso2.carbon.apimgt.gateway.handlers.security.APIAuthenticationHandler' || $handler.className == 'org.wso2.carbon.apimgt.gateway.handlers.throttling.ThrottleHandler')
 <handler xmlns="http://ws.apache.org/ns/synapse" class="$handler.className">
     #if($handler.hasProperties())
     #set ($map = $handler.getProperties() )
